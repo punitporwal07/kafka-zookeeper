@@ -1,11 +1,12 @@
 #  kafka-zookeeper
 ## kafka repository with ZooKeeper on K8s
-### Replace Pod name
 
 KAFKA TESTING -
 ```
 export POD_NAME=$(kubectl get pods --namespace kafka -l "app.kubernetes.io/name=kafka,app.kubernetes.io/instance=kafka,app.kubernetes.io/component=kafka" -o jsonpath="{.items[0].metadata.name}")
 ```
+### Replace Pod name if above command fails to fetch the kafka-broker-pod-name
+
 CREATING A TOPIC 
 ```
 kubectl --namespace kafka exec -it pod/kafka-broker0-9cd6dd669-l4qcc -- kafka-topics.sh --create --zookeeper zoo1:2181 --replication-factor 1 --partitions 1 --topic mytopic
